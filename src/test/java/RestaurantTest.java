@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -73,6 +75,19 @@ class RestaurantTest {
         restaurant = new Restaurant("Amelie's cafe", "Chennai", openingTime, closingTime);
         restaurant.addToMenu("Sweet corn soup", 119);
         restaurant.addToMenu("Vegetable lasagne", 269);
+    }
+
+    @Test
+    public void calculating_order_value_should_return_sum_of_total_items_selected_value() {
+        NewRestaurant();
+        restaurant.addToMenu("Tomato soup", 500);
+
+        List<Item> itemsSelected = new ArrayList<Item>();
+        itemsSelected.add(new Item("Sweet corn soup", 119));
+        itemsSelected.add(new Item("Vegetable lasagne", 269));
+        int totalValue = 388;
+        assertEquals(388, restaurant.calculateOrderValue(itemsSelected));
+
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
